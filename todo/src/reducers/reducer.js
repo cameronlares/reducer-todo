@@ -16,18 +16,19 @@ switch (action.type) {
             },
         ]
             case "TOGGLE_TODO":
-            state.map(todo => {
+                return state.map(todo => {
                 if(todo.id ===action.payload) {
-                    return [
-                        ...state,
-                        {
+                    return {
+                        ...todo,
                         completed: !todo.completed
-                        },
-                    ]
+                    }
                 } else {
-                    return state;
+                    return todo;
                 }
-            })
+            }) 
+            case "CLEAR_COMPLETED":
+                return state.filter(todo =>!todo.completed)
+
         
 
      

@@ -7,7 +7,7 @@ import reducer from './reducers/reducer'
 
 
     return(
-        <form onSubmit = {props.handleSubmit}>
+        <form>
         
         <input 
          autoComplete="off"
@@ -15,10 +15,10 @@ import reducer from './reducers/reducer'
             name = "newTodo"
             value = {props.newTodo}
             onChange = {props.handleChanges}
+       placeholder = "ADD TODO"
     />
-    <button>
-        
-        Add</button>
+    <button onClick= {props.handleSubmit}>Add</button>
+    <button onClick= {props.clear}>Clear</button>
 
     
     

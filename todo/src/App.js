@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { initialState, reducer } from "./reducers/reducer";
@@ -9,6 +9,8 @@ function App() {
   const [newTodo, setNewTodo] = useState("");
   const [state, dispatch] = useReducer(reducer, initialState);
   console.log(state);
+
+  
 
   const handleChanges = (e) => {
     setNewTodo(e.target.value);
@@ -21,10 +23,14 @@ function App() {
   };
 
 
-const click = () => {
-  dispatch({ type: "TOGGLE_TODO", payload: newTodo.id });
+const click = (todoId) => {
+  dispatch({ type: "TOGGLE_TODO", payload: todoId });
     };
 
+    const clear = (e) => {
+      e.preventDefault()
+      dispatch({type: "CLEAR_COMPLETED"})
+    }
 
 
   return (
@@ -32,14 +38,17 @@ const click = () => {
       <h2>Welcome to your Todo App!</h2>
 
       <TodoList 
-        onClick = { () =>click}
+        // onClick = { () =>click}
         todoList={state}
+        toggleItem = {click}
       />
 
       <TodoForm 
         handleSubmit={handleSubmit}
-        // value={newTodo}
+        clear={clear}
         handleChanges={handleChanges}
+      newTodo = {newTodo}
+      
     
       />
 
