@@ -10,8 +10,6 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   console.log(state);
 
-  
-
   const handleChanges = (e) => {
     setNewTodo(e.target.value);
   };
@@ -22,36 +20,31 @@ function App() {
     setNewTodo("");
   };
 
+  const click = (todoId) => {
+    dispatch({ type: "TOGGLE_TODO", payload: todoId });
+  };
 
-const click = (todoId) => {
-  dispatch({ type: "TOGGLE_TODO", payload: todoId });
-    };
-
-    const clear = (e) => {
-      e.preventDefault()
-      dispatch({type: "CLEAR_COMPLETED"})
-    }
-
+  const clear = (e) => {
+    e.preventDefault();
+    dispatch({ type: "CLEAR_COMPLETED" });
+  };
 
   return (
     <div className="App">
       <h2>Welcome to your Todo App!</h2>
 
-      <TodoList 
+      <TodoList
         // onClick = { () =>click}
         todoList={state}
-        toggleItem = {click}
+        toggleItem={click}
       />
 
-      <TodoForm 
+      <TodoForm
         handleSubmit={handleSubmit}
         clear={clear}
         handleChanges={handleChanges}
-      newTodo = {newTodo}
-      
-    
+        newTodo={newTodo}
       />
-
     </div>
   );
 }

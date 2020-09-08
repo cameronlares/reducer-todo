@@ -6,7 +6,7 @@ const Todo = props => {
       onClick={() => props.toggleItem(props.todo.id)} //When we invoke a function we pass it in anonymously
       className={`todo${props.todo.completed ? " completed" : ""}`}
     >
-      <p>{props.todo.item}</p>
+      <p>{props.todo.item}</p> 
     </div>
   );
 };
